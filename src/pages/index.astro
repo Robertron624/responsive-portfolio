@@ -2,11 +2,13 @@
 import Layout from '../layouts/Layout.astro';
 import Card from '../components/Card.astro';
 import PersonalInfoCard from '../components/PersonalInfoCard.astro';
+import MainSection from '../components/MainSection/MainSection.astro';
 ---
 
 <Layout title="Welcome to Astro.">
 	<main>
 		<PersonalInfoCard />
+		<MainSection />
 	</main>
 </Layout>
 
@@ -17,5 +19,6 @@ import PersonalInfoCard from '../components/PersonalInfoCard.astro';
 		font-size: 20px;
 		line-height: 1.6;
 		padding: 70px 0 0 0;
+		max-width: 1046px;
 	}
 </style>

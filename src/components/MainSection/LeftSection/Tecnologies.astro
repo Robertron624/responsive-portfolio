@@ -1,0 +1,87 @@
+---
+const tecnologies = [
+
+    { label: "HTML", experience: 100 },
+    { label: "CSS", experience: 90 },
+    { label: "Javascript", experience: 80 },
+    { label: "NodeJS", experience: 90 },
+    { label: "React", experience: 70 },
+    { label: "React Native", experience: 70 },
+    { label: "SASS", experience: 90 },
+    { label: "Vtex IO", experience: 80 },
+];
+---
+
+<div class="wrapper">
+    <p class="title">Frontend</p>
+    <ul class="technologies">
+        {
+            tecnologies.map((tecnology) => (
+                <li class="technology">
+                    <span class="label">{tecnology.label}</span>
+                    <div class="progress">
+                        <div
+                            class="progress-bar"
+                            style={{ width: `${tecnology.experience}%` }}
+                        />
+                    </div>
+                </li>
+            ))
+        }
+    </ul>
+</div>
+
+<style lang="scss">
+    .wrapper {
+        width: 415.025px;
+        flex-shrink: 0;
+        border-radius: 12px;
+        background: #fff;
+        padding: 23.47px;
+
+        $normal-grey: #4f4f4f;
+        $gap: 17.07px;
+
+        .title {
+            color: $normal-grey;
+            font-size: 18px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: normal;
+            text-transform: uppercase;
+        }
+
+        ul.technologies {
+            margin-top: $gap;
+            display: flex;
+            flex-direction: column;
+            gap: $gap;
+            li.technology {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                .label {
+                    color: $normal-grey;
+                    font-size: 16px;
+                    font-style: normal;
+                    font-weight: 500;
+                    line-height: normal;
+                }
+
+                .progress{
+                    $blue-progress: #2F80ED;
+                    width: 60%;
+                    max-width:198.444px;
+                    height: 9.602px;
+                    background: #C4C4C4;
+                    border-radius: 12px;
+                    overflow: hidden;
+                    .progress-bar {
+                        height: 100%;
+                        background: $blue-progress;
+                    }
+                }
+            }
+        }
+    }
+</style>
