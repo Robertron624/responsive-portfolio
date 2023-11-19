@@ -1,0 +1,82 @@
+---
+const hobbies = [
+    {
+        name: "Gaming",
+        description: "Lorem ipsum",
+        imageUrl: "/images/hobbies/hobby-gaming-small.png",
+    },
+    {
+        name: "Exercise",
+        description: "Lorem ipsum",
+        imageUrl: "/images/hobbies/hobby-gym.jpg",
+    },
+    {
+        name: "Chess",
+        description: "Lorem ipsum",
+        imageUrl: "/images/hobbies/hobby-chess.jpg",
+    },
+];
+---
+
+<div class="container">
+    <p class="title">Hobbies</p>
+    <ul class="hobbies">
+        {
+            hobbies.map((hobby) => (
+                <li class="hobby">
+                    <img src={hobby.imageUrl} alt={hobby.name} />
+                    <p class="name">{hobby.name}</p>
+                    <p class="description">{hobby.description}</p>
+                </li>
+            ))
+        }
+    </ul>
+</div>
+
+<style lang="scss">
+    .container {
+        border-radius: 12px;
+        background: #fff;
+        $grey: #4f4f4f;
+        padding: 22px 22px 36px 22px;
+        .title {
+            color: $grey;
+            font-size: 24px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: normal;
+        }
+
+        .hobbies {
+            margin-top: 26px;
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: column;
+            gap: 36px;
+            .hobby {
+                img {
+                    width: 379.661px;
+                    height: 139px;
+                    border-radius: 12px;
+                    object-fit: cover;
+                }
+                .name {
+                    margin-top: 26px;
+                    color: #333;
+                    font-size: 18px;
+                    font-style: normal;
+                    font-weight: 600;
+                    line-height: normal;
+                }
+
+                .description {
+                    color: #828282;
+                    font-size: 16px;
+                    font-style: normal;
+                    font-weight: 500;
+                    line-height: normal;
+                }
+            }
+        }
+    }
+</style>

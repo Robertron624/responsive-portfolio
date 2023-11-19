@@ -1,9 +1,17 @@
 ---
     import Tecnologies from "./Tecnologies.astro";
-    // import Hobbies from "./Hobbies.astro";
+    import Hobbies from "./Hobbies.astro";
 ---
 
-<div>
+<div class="left-side">
     <Tecnologies />
-    <!-- <Hobbies /> -->
+    <Hobbies />
 </div>
+
+<style lang="scss">
+    .left-side {
+        width: 415.025px;
+        display: grid;
+        row-gap: 42px;
+    }
+</style>
