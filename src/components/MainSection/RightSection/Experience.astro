@@ -1,0 +1,94 @@
+---
+import { experiences } from "./experiences";
+---
+
+<div class="wrapper">
+    <p class="title">Experiences</p>
+    <ul class="experiences">
+        {
+            experiences.map((experience) => {
+                return (
+                    <li class="experience">
+                        <div class="company-logo">
+                            <img
+                                src={experience.companyLogo}
+                                alt={experience.company}
+                            />
+                        </div>
+                        <div class="texts">
+                            <p class="date">{experience.date}</p>
+                            <p class="position">{experience.position}</p>
+                            <p class="description">{experience.description}</p>
+                        </div>
+                    </li>
+                );
+            })
+        }
+    </ul>
+</div>
+
+<style lang="scss" scoped>
+    .wrapper {
+        $gray: #4f4f4f;
+        $gray-2: #828282;
+        padding: 17px 31.23px 33px 31.23px;
+        border-radius: 12px;
+        background: #fff;
+        .title {
+            color: $gray;
+            font-size: 24px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: normal;
+        }
+
+        .experiences {
+            display: flex;
+            flex-direction: column;
+            gap: 36px;
+            margin-top: 44px;
+
+            .experience {
+                display: flex;
+                gap: 22.71px;
+                .company-logo {
+                    background-color: #000;
+                    width: 119.252px;
+                    height: 49px;
+                    img {
+                        object-fit: contain;
+                        height: 100%;
+                    }
+                }
+
+                .date {
+                    color: $gray-2;
+                    font-size: 14px;
+                    font-style: normal;
+                    font-weight: 500;
+                    line-height: normal;
+                }
+
+                .position {
+                    margin-top: 12px;
+                    color: #333;
+                    font-family: Montserrat;
+                    font-size: 16px;
+                    font-style: normal;
+                    font-weight: 600;
+                    line-height: normal;
+                }
+
+                .description {
+                    margin-top: 33px;
+                    color: $gray-2;
+                    font-size: 16px;
+                    font-style: normal;
+                    font-weight: 500;
+                    line-height: normal;
+                    text-wrap: pretty;
+                }
+            }
+        }
+    }
+</style>

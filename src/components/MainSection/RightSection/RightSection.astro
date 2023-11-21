@@ -1,97 +1,18 @@
+---
+import BlogShort from "./BlogShort.astro";
+import Experience from "./Experience.astro";
+---
+
 <div class="right-side">
-    <div class="top">
-        <div class="top-left">
-            <span> Blog</span>
-            <p class="post-title">How to organize your CSS</p>
-        </div>
-        <div class="top-right">
-            <img
-                height="321"
-                width="396"
-                src="/images/blog-post.jpg"
-                alt="animated boy with web development related graphics"
-            />
-        </div>
-    </div>
-    <div class="bottom">
-        <p class="post-description">
-            In this article I tell the story about Proin eu justo sit amet lacus
-            bibendum tincidunt. Vivamus non volutpat nisl, a luctus mi.
-            <span>
-                Donec aliquam est dui, vel vestibulum diam sollicitudin id.
-                Quisque feugiat malesuada molestie.
-            </span>
-        </p>
-        <a href="#" class="cta"> dev.to</a>
-    </div>
+    <BlogShort />
+    <Experience />
 </div>
 
 <style lang="scss" scoped>
     .right-side {
-        border-radius: 12px;
-        background: #fff;
-        padding: 31px 0 32px 20px;
-        max-height: 656px;
-        .top {
-            display: flex;
-            // gap: 39px;
-            .top-left {
-                span {
-                    color: #e0e0e0;
-                    font-size: 16px;
-                    font-style: normal;
-                    font-weight: 500;
-                    line-height: normal;
-                }
-                .post-title {
-                    margin-top: 21px;
-                    max-width: 178px;
-                    color: #333;
-                    font-size: 24px;
-                    font-style: normal;
-                    font-weight: 500;
-                    line-height: normal;
-                }
-            }
-            .top-right {
-                width: 396px;
-                height: 321px;
-                position: relative;
-                overflow: hidden;
-                img {
-                    position: absolute;
-                    right: -39px;
-                    border-radius: 12px;
-                    object-fit: cover;
-                }
-            }
-        }
-        .bottom {
-            margin-top: 50px;
-
-            .post-description {
-                margin-bottom: 66px;
-                color: #828282;
-                font-family: Montserrat;
-                font-size: 16px;
-                font-style: normal;
-                font-weight: 500;
-                line-height: normal;
-                max-width: 492px;
-
-                & > span {
-                    margin-top: 10px;
-                    display: block;
-                }
-            }
-
-            .cta {
-                color: #2f80ed;
-                font-size: 16px;
-                font-style: normal;
-                font-weight: 500;
-                line-height: normal;
-            }
-        }
+        display: flex;
+        flex-direction: column;
+        gap: 42px;
+        max-width: 496px;
     }
 </style>
