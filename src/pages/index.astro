@@ -3,12 +3,14 @@ import Layout from '../layouts/Layout.astro';
 import Card from '../components/Card.astro';
 import PersonalInfoCard from '../components/PersonalInfoCard.astro';
 import MainSection from '../components/MainSection/MainSection.astro';
+import Projects from '../components/Projects/Projects.jsx';
 ---
 
 <Layout title="Welcome to Astro.">
 	<main>
 		<PersonalInfoCard />
 		<MainSection />
+		<Projects client:load/>
 	</main>
 </Layout>
 

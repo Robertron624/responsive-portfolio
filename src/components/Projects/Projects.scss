@@ -1,0 +1,51 @@
+.projects {
+    margin-top: 40px;
+
+    button {
+        cursor: pointer;
+    }
+
+    .top-card {
+        border-radius: 12px;
+        background: #FFF;
+        width: 1046px;
+        height: 115px;
+        padding: 22px;
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1rem;
+
+            .tag {
+                border-radius: 12px;
+                border: 1px solid #4F4F4F;
+                background-color: transparent;
+                width: 72px;
+                height: 33px;
+                flex-shrink: 0;
+                color: #4F4F4F;
+                text-align: center;
+                font-size: 14px;
+                font-style: normal;
+                font-weight: 500;
+                line-height: normal;
+
+                &.selected {
+                    border: 1px solid #2F80ED;
+                    background: #2F80ED;
+                    color: #FFF;
+                }
+            }
+        }
+    }
+
+    .project-cards {
+        margin-top: 36px;
+        display: flex;
+        justify-content: space-between;
+        overflow-x: scroll;
+    }
+
+}

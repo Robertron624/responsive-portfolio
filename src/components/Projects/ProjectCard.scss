@@ -1,0 +1,91 @@
+.project-card {
+    width: 328.495px;
+    height: 568px;
+    border-radius: 12px;
+    background: #FFF;
+
+    padding: 18px 18px 33px 18px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    .project-image {
+
+        img{
+            border-radius: 12px;
+            object-fit: cover;
+        }
+    }
+
+    .project-tags {
+        margin-top: 24px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 11px;
+
+        .tag {
+            color: #4F4F4F;
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: normal;
+        }
+    }
+
+    .project-name {
+        margin-top: 22px;
+        color: #333;
+        font-size: 24px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal;
+    }
+
+    .project-description {
+        margin-top: calc(18rem / 16);
+        color: #828282;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal;
+    }
+
+    .buttons {
+        display: flex;
+        justify-content: space-between;
+
+        a {
+            border-radius: 12px;
+            height: 46px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: all 0.2s ease-in-out;
+            font-size: 18px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: normal;
+
+            &.demo-link {
+                background: #2F80ED;
+                width: 135px;
+                color: #FFF;
+
+
+                &:hover {
+                    background: #2F80CD;
+                }
+            }
+
+            &.github-link {
+                background: transparent;
+                border: 1px solid #2F80ED;
+                color: #2F80ED;
+                width: 118px;
+            }
+            
+        }
+    }
+}
