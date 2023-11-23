@@ -3,12 +3,12 @@ import { projects } from "./projectsInfo";
 import { useStore } from "@nanostores/react";
 import { selectedFilterStore } from "./selectedFilterStore";
 import "./Projects.scss";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import ReactPaginate from "react-paginate";
 
-const fiveFirstTags = projects.reduce((acc, project) => {
+const allTags = projects.reduce((acc, project) => {
     project.tags.forEach((tag) => {
-        if (!acc.includes(tag) && acc.length < 5) {
+        if (!acc.includes(tag)) {
             acc.push(tag);
         }
     });
@@ -89,32 +89,52 @@ export default function Projects() {
     //     });
     // };
 
+    // Allow user to grab and move the tag list
+        const containerRef = useRef(null);
+        const [isDragging, setIsDragging] = useState(false);
+        const [startX, setStartX] = useState(0);
+        const [scrollLeft, setScrollLeft] = useState(0);
+      
+        const handleMouseDown = (event) => {
+          setIsDragging(true);
+          setStartX(event.pageX - containerRef.current.offsetLeft);
+          setScrollLeft(containerRef.current.scrollLeft);
+        };
+      
+        const handleMouseUp = () => {
+          setIsDragging(false);
+        };
+      
+        const handleMouseMove = (event) => {
+          if (!isDragging) return;
+          const x = event.pageX - containerRef.current.offsetLeft;
+          const distance = x - startX;
+          containerRef.current.scrollLeft = scrollLeft - distance;
+        };
+
     return (
         <section className="projects">
             <div className="top-card">
                 <p>Projects</p>
-                <div className="tags">
-                    {fiveFirstTags?.map((tag, index) => (
+                <div
+                    className="tags"
+                    ref={containerRef}
+                    onMouseDown={handleMouseDown}
+                    onMouseUp={handleMouseUp}
+                    onMouseMove={handleMouseMove}
+                    onMouseLeave={handleMouseUp}
+                    >
+                    {allTags?.map((tag, index) => (
                         <button
                             key={index}
                             className={`tag`}
-                            onClick={() => handleFilter(tag)}
+                            // onClick={() => handleFilter(tag)}
                         >
                             {tag}
                         </button>
                     ))}
                 </div>
             </div>
-
-            {/* <div className="project-cards">
-                {filteredProjects.map((project, index) => (
-                    <ProjectCard
-                        key={`${project.name}-${index}`}
-                        project={project}
-                    />
-                ))}
-            </div> */}
-
             <PaginatedItems itemsPerPage={3} />
         </section>
     );
