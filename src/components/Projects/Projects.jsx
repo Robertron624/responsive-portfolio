@@ -3,6 +3,8 @@ import { projects } from "./projectsInfo";
 import { useStore } from "@nanostores/react";
 import { selectedFilterStore } from "./selectedFilterStore";
 import "./Projects.scss";
+import { useEffect, useState } from "react";
+import ReactPaginate from "react-paginate";
 
 const fiveFirstTags = projects.reduce((acc, project) => {
     project.tags.forEach((tag) => {
@@ -13,14 +15,79 @@ const fiveFirstTags = projects.reduce((acc, project) => {
     return acc;
 }, []);
 
-export default function Projects() {
-    const selectedFilter = useStore(selectedFilterStore);
+function Items({ currentItems }) {
+    return (
+        <div className="project-cards">
+            {currentItems.map((project, index) => (
+                <ProjectCard
+                    key={`${project.name}-${index}`}
+                    project={project}
+                />
+            ))}
+        </div>
+    );
+}
 
-    const firstThreeProjects = [...projects].slice(0, 3);
+function PaginatedItems({ itemsPerPage }) {
+    // Here we use item offsets; we could also use page offsets
+    // following the API or data you're working with.
+    const [itemOffset, setItemOffset] = useState(0);
 
-    const handleFilter = (tag) => {
-        selectedFilterStore.set(tag);
+    // Simulate fetching items from another resources.
+    // (This could be items from props; or items loaded in a local state
+    // from an API endpoint with useEffect and useState)
+    const endOffset = itemOffset + itemsPerPage;
+    console.log(`Loading items from ${itemOffset} to ${endOffset}`);
+    const currentItems = projects.slice(itemOffset, endOffset);
+    const pageCount = Math.ceil(projects.length / itemsPerPage);
+
+    // Invoke when user click to request another page.
+    const handlePageClick = (event) => {
+        const newOffset = (event.selected * itemsPerPage) % projects.length;
+        console.log(
+            `User requested page number ${event.selected}, which is offset ${newOffset}`
+        );
+        setItemOffset(newOffset);
     };
+
+    return (
+        <>
+            <Items currentItems={currentItems} />
+            <ReactPaginate
+                breakLabel="..."
+                nextLabel=">"
+                onPageChange={handlePageClick}
+                pageRangeDisplayed={5}
+                pageCount={pageCount}
+                previousLabel="<"
+                renderOnZeroPageCount={null}
+            />
+        </>
+    );
+}
+
+export default function Projects() {
+    // const {selectedTag, filteredProjects} = useStore(selectedFilterStore);
+
+    // useEffect(() => {
+
+    //     const projectsWithCurrentTag = projects.filter((project) => {
+    //         return project.tags.includes(selectedTag);
+    //     });
+
+    //     selectedFilterStore.set({
+    //         selectedTag,
+    //         filteredProjects: projectsWithCurrentTag
+    //     });
+
+    // }, [selectedTag])
+
+    // const handleFilter = (tag) => {
+    //     selectedFilterStore.set({
+    //         selectedTag: tag,
+    //         filteredProjects
+    //     });
+    // };
 
     return (
         <section className="projects">
@@ -30,9 +97,7 @@ export default function Projects() {
                     {fiveFirstTags?.map((tag, index) => (
                         <button
                             key={index}
-                            className={`tag ${
-                                tag == selectedFilter ? "selected" : ""
-                            }`}
+                            className={`tag`}
                             onClick={() => handleFilter(tag)}
                         >
                             {tag}
@@ -41,81 +106,17 @@ export default function Projects() {
                 </div>
             </div>
 
-            <div className="project-cards">
-                {firstThreeProjects.map((project, index) => (
+            {/* <div className="project-cards">
+                {filteredProjects.map((project, index) => (
                     <ProjectCard
                         key={`${project.name}-${index}`}
                         project={project}
                     />
                 ))}
-            </div>
+            </div> */}
+
+            <PaginatedItems itemsPerPage={3} />
         </section>
     );
 }
 
-/*
-<section class="projects">
-
-    <div class="top-card">
-        <p >Projects</p>
-        <div class="tags">
-            {
-                fiveFirstTags?.map((tag) => (
-                    
-                        <button class="tag">{tag}</button>
-                ))
-            }
-        </div>
-    </div>
-
-
-    <div class="projects">
-        {
-            projects.map((project) => (
-                <ProjectCard project={project} />
-            ))
-        }
-    </div>
-</section>
-
-
-
-<style lang="scss" scoped>
-    .projects {
-        margin-top: 40px;
-
-
-        .top-card {
-            border-radius: 12px;
-            background: #FFF;
-            width: 1046px;
-            height: 115px;
-            padding: 22px;
-
-            .tags {
-                display: flex;
-                flex-wrap: wrap;
-                gap: 1rem;
-                margin-top: 1rem;
-
-                .tag {
-                    border-radius: 12px;
-                    border: 1px solid #4F4F4F;
-                    background-color: transparent;
-                    width: 72px;
-                    height: 33px;
-                    flex-shrink: 0;
-                    color: #4F4F4F;
-                    text-align: center;
-                    font-size: 14px;
-                    font-style: normal;
-                    font-weight: 500;
-                    line-height: normal;
-                }
-            }
-        }
-
-    }
-</style>
-
-*/
