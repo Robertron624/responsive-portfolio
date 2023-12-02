@@ -1,19 +1,10 @@
 import ProjectCard from "./ProjectCard.jsx";
 import { projects } from "./projectsInfo";
 import { useStore } from "@nanostores/react";
-import { selectedFilterStore } from "./selectedFilterStore";
+import { selectedFilterStore, allTags } from "./selectedFilterStore";
 import "./Projects.scss";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import ReactPaginate from "react-paginate";
-
-const allTags = projects.reduce((acc, project) => {
-    project.tags.forEach((tag) => {
-        if (!acc.includes(tag)) {
-            acc.push(tag);
-        }
-    });
-    return acc;
-}, []);
 
 function Items({ currentItems }) {
     return (
@@ -30,20 +21,19 @@ function Items({ currentItems }) {
 
 function PaginatedItems({ itemsPerPage }) {
     // Here we use item offsets; we could also use page offsets
-    // following the API or data you're working with.
+    // following the API or data we're working with.
     const [itemOffset, setItemOffset] = useState(0);
 
-    // Simulate fetching items from another resources.
-    // (This could be items from props; or items loaded in a local state
-    // from an API endpoint with useEffect and useState)
+    const {filteredProjects} = useStore(selectedFilterStore);
+
     const endOffset = itemOffset + itemsPerPage;
     console.log(`Loading items from ${itemOffset} to ${endOffset}`);
-    const currentItems = projects.slice(itemOffset, endOffset);
-    const pageCount = Math.ceil(projects.length / itemsPerPage);
+    const currentItems = filteredProjects.slice(itemOffset, endOffset);
+    const pageCount = Math.ceil(filteredProjects.length / itemsPerPage);
 
     // Invoke when user click to request another page.
     const handlePageClick = (event) => {
-        const newOffset = (event.selected * itemsPerPage) % projects.length;
+        const newOffset = (event.selected * itemsPerPage) % filteredProjects.length;
         console.log(
             `User requested page number ${event.selected}, which is offset ${newOffset}`
         );
@@ -67,27 +57,23 @@ function PaginatedItems({ itemsPerPage }) {
 }
 
 export default function Projects() {
-    // const {selectedTag, filteredProjects} = useStore(selectedFilterStore);
+    const {selectedTag, filteredProjects} = useStore(selectedFilterStore);
 
-    // useEffect(() => {
+    const handleFilter = (tag) => {
+        let projectsWithCurrentTag = [];
 
-    //     const projectsWithCurrentTag = projects.filter((project) => {
-    //         return project.tags.includes(selectedTag);
-    //     });
+        // Loop through all projects, not just the currently filtered ones, to ensure that all projects with the selected tag are shown
+        projects.forEach((project) => { 
+            if (project.tags.includes(tag)) {
+                projectsWithCurrentTag.push(project);
+            }
+        });
 
-    //     selectedFilterStore.set({
-    //         selectedTag,
-    //         filteredProjects: projectsWithCurrentTag
-    //     });
-
-    // }, [selectedTag])
-
-    // const handleFilter = (tag) => {
-    //     selectedFilterStore.set({
-    //         selectedTag: tag,
-    //         filteredProjects
-    //     });
-    // };
+        selectedFilterStore.set({
+            selectedTag: tag,
+            filteredProjects: projectsWithCurrentTag ? projectsWithCurrentTag : filteredProjects
+        });
+    };
 
     // Allow user to grab and move the tag list
         const containerRef = useRef(null);
@@ -127,8 +113,8 @@ export default function Projects() {
                     {allTags?.map((tag, index) => (
                         <button
                             key={index}
-                            className={`tag`}
-                            // onClick={() => handleFilter(tag)}
+                            className={`tag ${tag === selectedTag ? "selected" : ""}`}
+                            onClick={() => handleFilter(tag)}
                         >
                             {tag}
                         </button>

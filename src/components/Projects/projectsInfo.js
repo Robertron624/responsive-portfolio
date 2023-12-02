@@ -17,7 +17,7 @@ export const projects = [
     },
     {
         name: 'Rock Paper Scissors',
-        tags: ['React', 'TailwinCSS', 'DaisyUI', 'HTML', 'Typescript', 'Zustand'],
+        tags: ['React', 'TailwindCSS', 'DaisyUI', 'HTML', 'Typescript', 'Zustand'],
         description: 'This is a rock paper scissors game. You can play against the computer. It saves the score in the local storage.',
         demoLink: 'https://melodic-zabaione-4cfebe.netlify.app/',
         githubLink: 'https://github.com/Robertron624/rock-paper-scissors',
