@@ -14,11 +14,7 @@ const useViewportWidth = () => {
         };
     }, []);
 
-    const isMobile = viewportWidth <= 767;
-    const isTablet = viewportWidth > 767 && viewportWidth <= 1024;
-    const isDesktop = viewportWidth > 1024;
-
-    return { viewportWidth, isMobile, isTablet, isDesktop };
+    return viewportWidth;
 };
 
 export default useViewportWidth;

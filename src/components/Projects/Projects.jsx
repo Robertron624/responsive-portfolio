@@ -6,15 +6,18 @@ import "./Projects.scss";
 import { useRef, useState } from "react";
 import ReactPaginate from "react-paginate";
 import useViewportWidth from "./hooks/useViewportWidth.jsx";
+import { useEffect } from "react";
+
+const ITEMS_PER_PAGE_MOBILE = 1;
+const ITEMS_PER_PAGE_TABLET = 2;
+const ITEMS_PER_PAGE_DESKTOP = 3
 
 function Items({ currentItems }) {
 
     const { isMobile } = useViewportWidth();
 
     return (
-        <div className="project-cards" style={
-            isMobile ? { justifyContent: "center" } : { justifyContent: "space-between" }
-        }>
+        <div className="project-cards">
             {currentItems.map((project, index) => (
                 <ProjectCard
                     key={`${project.name}-${index}`}
@@ -107,9 +110,21 @@ export default function Projects() {
         containerRef.current.scrollLeft = scrollLeft - distance;
     };
 
-    // Detect and adjust cards x page ( 1 for mobile, 3 for desktop )
+    // Detect and adjust cards x page ( 1 for mobile, 2 for desktop, 3 for desktop )
 
-    const { isMobile } = useViewportWidth();
+    const viewportWidth = useViewportWidth();
+    const [itemsPerPage, setItemsPerPage] = useState(ITEMS_PER_PAGE_MOBILE);
+  
+    useEffect(() => {
+      // Update items per page based on viewport width
+      if (viewportWidth <= 767) {
+        setItemsPerPage(ITEMS_PER_PAGE_MOBILE);
+      } else if (viewportWidth > 767 && viewportWidth <= 1024) {
+        setItemsPerPage(ITEMS_PER_PAGE_TABLET);
+      } else {
+        setItemsPerPage(ITEMS_PER_PAGE_DESKTOP);
+      }
+    }, [viewportWidth]);
 
     return (
         <section className="projects">
@@ -136,7 +151,7 @@ export default function Projects() {
                     ))}
                 </div>
             </div>
-            <PaginatedItems itemsPerPage={isMobile ? 1 : 3} />
+            <PaginatedItems itemsPerPage={itemsPerPage} />
         </section>
     );
 }

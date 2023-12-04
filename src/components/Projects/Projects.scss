@@ -56,7 +56,13 @@
     .project-cards {
         margin-top: 36px;
         display: flex;
-        // justify-content: space-between;
+        justify-content: center;
+        gap: 1rem;
+
+        @include desktop {
+            justify-content: space-between;
+            gap: unset;
+        }
     }
 
     ul[aria-label = 'Pagination'] {
