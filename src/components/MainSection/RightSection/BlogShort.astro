@@ -27,14 +27,29 @@
 </div>
 
 <style lang="scss" scoped>
+
+    @import "../../../vars.scss";
+
     .wrapper {
         border-radius: 12px;
         background: #fff;
-        padding: 31px 0 32px 20px;
-        height: 656px;
+        padding: 31px 31px 32px 20px;
+        
+        @include desktop{
+            max-height: 656px;
+            padding: 31px 0 32px 20px;
+        }
+
         .top {
             display: flex;
-            // gap: 39px;
+            gap: 39px;
+            flex-direction: column;
+            @include desktop{
+                flex-direction: row;
+                gap: unset;
+            }
+
+
             .top-left {
                 span {
                     color: #e0e0e0;
@@ -54,15 +69,25 @@
                 }
             }
             .top-right {
-                width: 396px;
+                width: 100%;
                 height: 321px;
                 position: relative;
                 overflow: hidden;
+
+                @include desktop{
+                    width: 396px;
+                }
+
                 img {
                     position: absolute;
-                    right: -39px;
                     border-radius: 12px;
                     object-fit: cover;
+
+                    @include desktop{
+                        right: unset;
+                        position: absolute;
+                        right: -39px;
+                    }
                 }
             }
         }

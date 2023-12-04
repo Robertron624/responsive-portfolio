@@ -60,15 +60,27 @@
 </section>
 
 <style lang="scss">
+
+    // Import vars file in src folder
+
+    @import "../vars.scss";
+
     section#personal-info {
         width: 100%;
         padding: 2rem 22px;
         background-color: #fff;
-        display: grid;
-        grid-template-columns: 1fr 3.5fr;
-        column-gap: 2rem;
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
         margin-inline: auto;
         border-radius: 12px;
+
+        @include desktop {
+            gap: unset;
+            display: grid;
+            column-gap: 2rem;
+            grid-template-columns: 1fr 3.5fr;
+        }
 
         .avatar {
             overflow: hidden;
