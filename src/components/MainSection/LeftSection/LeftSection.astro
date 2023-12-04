@@ -9,9 +9,15 @@
 </div>
 
 <style lang="scss">
+
+    @import "../../../vars.scss";
+
     .left-side {
-        max-width: 415.025px;
         display: grid;
         row-gap: 42px;
+
+        @include desktop {
+            max-width: 415.025px;
+        }
     }
 </style>

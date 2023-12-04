@@ -1,11 +1,15 @@
+@import ".././../vars.scss";
 .projects {
     margin-top: 40px;
     .top-card {
         border-radius: 12px;
         background: #FFF;
-        width: 1046px;
         height: 115px;
         padding: 22px;
+
+        @include desktop {
+            width: 1046px;
+        }
 
         .tags {
             display: flex;

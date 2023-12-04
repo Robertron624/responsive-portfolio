@@ -95,6 +95,11 @@
                 justify-content: space-between;
                 --grey: #4f4f4f;
                 color: var(--grey);
+                gap: 1rem;
+                
+                @include desktop {
+                    gap: unset;
+                }
                 .name-profession {
                     display: flex;
                     flex-direction: column;
@@ -120,6 +125,8 @@
                     display: flex;
                     flex-direction: column;
                     gap: 10px;
+
+
                     div {
                         display: flex;
                         gap: 16.4px;
@@ -127,19 +134,23 @@
                     }
 
                     .email {
+                        flex-wrap: wrap;
                         span {
                             font-size: 18px;
                             font-style: normal;
                             font-weight: 500;
                             line-height: normal;
+                            word-break: break-all;
                         }
                     }
                     .phone {
+                        flex-wrap: wrap;
                         span {
                             font-size: 18px;
                             font-style: normal;
                             font-weight: 500;
                             line-height: normal;
+                            word-break: break-all;
                         }
                     }
                 }
