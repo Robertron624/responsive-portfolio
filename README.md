@@ -1,33 +1,52 @@
 # Astro Starter Kit: Basics
 
-```sh
-npm create astro@latest -- --template basics
-```
+## 🎨 Screenshots
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/basics)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/basics)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/basics/devcontainer.json)
-
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
-
-![just-the-basics](https://github.com/withastro/astro/assets/2244813/a0a5533c-a856-4198-8470-2d67b1d7c554)
+![Screenshot 1](./screenshoot_desktop.png)
+![Screenshot 2](./screenshoot_mobile.png)
 
 ## 🚀 Project Structure
 
-Inside of your Astro project, you'll see the following folders and files:
+Inside of this Astro project, you'll see the following folders and files:
 
 ```text
 /
+├── .gitignore
+├── .vscode/
+│   ├── extensions.json
+│   └── launch.json
+├── astro.config.mjs
+├── package.json
 ├── public/
-│   └── favicon.svg
+│   ├── images/
+│   │   ├── experiences/
+│   │   ├── hobbies/
+│   │   └── projects/
+├── README.md
 ├── src/
+│   ├── assets/
+│   │   └── fonts/
+│   │       ├── Montserrat-Bold.ttf
+│   │       ├── Montserrat-Medium.ttf
+│   │       └── Montserrat-SemiBold.ttf
 │   ├── components/
-│   │   └── Card.astro
+│   │   ├── MainSection/
+│   │   │   ├── LeftSection/
+│   │   │   ├── MainSection.astro
+│   │   │   └── RightSection/
+│   │   ├── PersonalInfoCard.astro
+│   │   └── Projects/
+│   │       ├── hooks/
+│   │       ├── ProjectCard.jsx
+│   │       ├── ProjectCard.scss
+│   │       └── ...
+│   ├── env.d.ts
 │   ├── layouts/
 │   │   └── Layout.astro
-│   └── pages/
-│       └── index.astro
-└── package.json
+│   ├── pages/
+│   │   └── index.astro
+│   └── vars.scss
+└── tsconfig.json
 ```
 
 Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
@@ -49,11 +68,20 @@ All commands are run from the root of the project, from a terminal:
 | `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
 | `npm run astro -- --help` | Get help using the Astro CLI                     |
 
-## 👀 Want to learn more?
+## 📕 Resources
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+- [Astro Documentation](https://docs.astro.build/)
+- [React Documentation](https://reactjs.org/docs/getting-started.html)
+- [Sass Documentation](https://sass-lang.com/documentation)
+- [TypeScript Documentation](https://www.typescriptlang.org/docs/)
+- [nanostores library](https://github.com/nanostores/nanostores)
+- [Astro React integration](https://docs.astro.build/en/guides/integrations-guide/react/)
 
+## 🔗 Project Links
 
-### Relevant Links
+- [GitHub](https://github.com/Robertron624/responsive-portfolio)
+- [Live Site]()
+
+## 📚 Tutorials
 
 - [How to Implement Pagination in React](https://hygraph.com/blog/react-pagination)
