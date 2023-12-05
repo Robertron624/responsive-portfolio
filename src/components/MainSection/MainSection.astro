@@ -9,9 +9,19 @@ import RightSection from './RightSection/RightSection.astro'
 </div>
 
 <style lang="scss" scoped>
+
+    @import "../../vars.scss";
+
     .main-section {
         margin-top: 42px;
         display: flex;
+        flex-direction: column;
         gap: 35px;
+
+        @include desktop {
+            flex-direction: row
+        }
+
+
     }
 </style>

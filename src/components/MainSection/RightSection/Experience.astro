@@ -28,6 +28,9 @@ import { experiences } from "./experiences";
 </div>
 
 <style lang="scss" scoped>
+
+    @import "../../../vars.scss";
+
     .wrapper {
         $gray: #4f4f4f;
         $gray-2: #828282;
@@ -35,7 +38,10 @@ import { experiences } from "./experiences";
         border-radius: 12px;
         background: #fff;
 
-        height: 482px;
+        @include desktop {
+            max-height: 482px;
+        }
+
         .title {
             color: $gray;
             font-size: 24px;

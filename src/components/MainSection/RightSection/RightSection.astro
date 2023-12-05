@@ -9,10 +9,19 @@ import Experience from "./Experience.astro";
 </div>
 
 <style lang="scss" scoped>
+
+    @import "../../../vars.scss";
+
     .right-side {
         display: flex;
         flex-direction: column;
-        max-width: 596px;
+        gap: 2rem;
         justify-content: space-between;
+
+        @include desktop{
+            gap: unset;
+            max-width: 596px;
+        }
+
     }
 </style>

@@ -1,11 +1,15 @@
+@import ".././../vars.scss";
 .projects {
     margin-top: 40px;
     .top-card {
         border-radius: 12px;
         background: #FFF;
-        width: 1046px;
         height: 115px;
         padding: 22px;
+
+        @include desktop {
+            width: 1046px;
+        }
 
         .tags {
             display: flex;
@@ -52,14 +56,29 @@
     .project-cards {
         margin-top: 36px;
         display: flex;
-        justify-content: space-between;
+        justify-content: center;
+        gap: 1rem;
+
+        @include desktop {
+            justify-content: space-between;
+            gap: unset;
+        }
     }
 
     ul[aria-label = 'Pagination'] {
         margin-top: 36px;
         display: flex;
-        justify-content: flex-end;
+        justify-content: center;
         gap: 1rem;
+        flex-wrap: wrap;
+        max-width: 90%;
+        margin-inline: auto;
+
+        @include desktop {
+            justify-content: flex-end;
+            max-width: unset;
+            margin-inline: unset;
+        }
 
         li {
             background-color: transparent;

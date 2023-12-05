@@ -1,6 +1,6 @@
 .project-card {
-    width: 328.495px;
-    // height: 568px;
+    max-width: 328.495px;
+    width: 100%;
     border-radius: 12px;
     background: #FFF;
 
@@ -9,9 +9,11 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    gap: clamp(18px, 3.5vw, 33px);
+
+    // using clamp to add dynamic separation between the project info and the project link buttons
 
     .project-image {
-
         img{
             border-radius: 12px;
             object-fit: cover;
