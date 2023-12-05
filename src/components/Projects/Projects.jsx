@@ -112,19 +112,26 @@ export default function Projects() {
 
     // Detect and adjust cards x page ( 1 for mobile, 2 for desktop, 3 for desktop )
 
-    const viewportWidth = useViewportWidth();
+    const currentDevice = useViewportWidth();
     const [itemsPerPage, setItemsPerPage] = useState(ITEMS_PER_PAGE_MOBILE);
   
     useEffect(() => {
-      // Update items per page based on viewport width
-      if (viewportWidth <= 767) {
-        setItemsPerPage(ITEMS_PER_PAGE_MOBILE);
-      } else if (viewportWidth > 767 && viewportWidth <= 1024) {
-        setItemsPerPage(ITEMS_PER_PAGE_TABLET);
-      } else {
-        setItemsPerPage(ITEMS_PER_PAGE_DESKTOP);
+      switch (currentDevice) {
+        case "mobile":
+          setItemsPerPage(ITEMS_PER_PAGE_MOBILE);
+          break;
+        case "tablet":
+          setItemsPerPage(ITEMS_PER_PAGE_TABLET);
+          break;
+        case "desktop":
+          setItemsPerPage(ITEMS_PER_PAGE_DESKTOP);
+          break;
+        default:
+          setItemsPerPage(ITEMS_PER_PAGE_MOBILE);
+          break;
       }
-    }, [viewportWidth]);
+
+    }, [currentDevice]);
 
     return (
         <section className="projects">

@@ -27,15 +27,14 @@
 </div>
 
 <style lang="scss" scoped>
-
     @import "../../../vars.scss";
 
     .wrapper {
         border-radius: 12px;
         background: #fff;
-        padding: 31px 31px 32px 20px;
-        
-        @include desktop{
+        padding: 31px 20px 32px;
+
+        @include desktop {
             max-height: 656px;
             padding: 31px 0 32px 20px;
         }
@@ -44,11 +43,10 @@
             display: flex;
             gap: 39px;
             flex-direction: column;
-            @include desktop{
+            @include desktop {
                 flex-direction: row;
                 gap: unset;
             }
-
 
             .top-left {
                 span {
@@ -60,12 +58,15 @@
                 }
                 .post-title {
                     margin-top: 21px;
-                    max-width: 178px;
                     color: #333;
                     font-size: 24px;
                     font-style: normal;
                     font-weight: 500;
                     line-height: normal;
+
+                    @include desktop {
+                        max-width: 178px;
+                    }
                 }
             }
             .top-right {
@@ -74,7 +75,7 @@
                 position: relative;
                 overflow: hidden;
 
-                @include desktop{
+                @include desktop {
                     width: 396px;
                 }
 
@@ -83,7 +84,7 @@
                     border-radius: 12px;
                     object-fit: cover;
 
-                    @include desktop{
+                    @include desktop {
                         right: unset;
                         position: absolute;
                         right: -39px;
@@ -102,7 +103,10 @@
                 font-style: normal;
                 font-weight: 500;
                 line-height: normal;
-                max-width: 492px;
+
+                @include desktop {
+                    max-width: 492px;
+                }
 
                 & > span {
                     margin-top: 10px;
